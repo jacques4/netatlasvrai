@@ -1,0 +1,93 @@
+﻿@model IEnumerable<DataLayer.EntityModels.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>ADMIN PAGE</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    
+
+  
+    <h1>LIST OF VALID ACCOUNTS</h1>
+
+            @foreach (var item in Model) {
+    if (item.ActiveAccount==true)
+    {
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+                </tr>
+            }
+            }
+
+    </tbody>
+</table>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    
+
+  
+    <h1>LIST OF INVALID ACCOUNTS</h1>
+
+            @foreach (var item in Model) {
+    if (item.ActiveAccount==false)
+    {
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+                </tr>
+            }
+            }
+
+    </tbody>
+</table>

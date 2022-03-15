@@ -1,0 +1,122 @@
+﻿@*@model Article
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    #articleList div {
+        text-align: left;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        #articleList div h3 {
+            margin-bottom: 5px;
+        }
+
+        #articleList div p {
+            margin-bottom: 5px;
+        }
+</style>
+@using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { id = "Article" }))
+{
+    <div class="row">
+        <div class="col-6">
+            Article Heading
+        </div>
+        <div class="col-6">
+            @Html.TextBoxFor(model => Model.articleHeading, new { @maxlength = "50" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Article Content
+        </div>
+        <div class="col-6">
+            @Html.TextBoxFor(model => Model.articleContent, new { @maxlength = "100" })
+        </div>
+    </div>
+    <div>
+        <input type="submit" id="Add" value="Add" />
+    </div>
+}*@
+@*
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@Model IEnumerable<DataLayer.EntityModels.ApplicationUser>;
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div id="articleList"></div>
+</div>
+<table>
+    <thead>
+        <tr>
+        <th>
+        
+            @Html DisplayFor(m=> m.FirstName)
+        </th>
+        <th>
+        
+            @Html DisplayNameFor (m=> m.LastName)
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+
+            @foreach(var item in Model){
+                <tr>
+                   
+                     <td>
+                        @Html DisplayNameFor(modelItem =>item.LastName)
+                    </td>
+                    <td>
+                        <a asp-action="Decline" asp-route-id="@item.Id" class="btn-danger">Decline</a>
+                        <a asp-action="Autorization" asp-route-id="@item.Id" class="btn-danger">Authorization</a>
+
+                    </td>
+
+                     
+                </tr>
+
+            }
+
+    </tbody>
+
+</table>*@
+
+
+
+@model IEnumerable<DataLayer.EntityModels.ApplicationUser>
+
+@{
+    ViewData["Title"] = "LISTE DES MEMBRES";
+}
+
+<h1>NOS FORMATIONS</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(Model => Model.UserName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                <a asp-action="Authorization" asp-route-id="@item.Id">Accept</a> |
+                |
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

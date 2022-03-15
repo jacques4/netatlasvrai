@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@Model IEnumerable<FriendlyRS1.DataLayer.EntityModels.ApplicationUser>;
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div id="articleList"></div>
+</div>
+<table>
+    <thead>
+        <tr>
+        <th>
+        
+            @Html<dynamic>DisplayNameFor<dynamic>(m=> m.FirstName)
+        </th>
+        <th>
+        
+            @Html<dynamic>DisplayNameFor<dynamic>(m=> m.LastName)
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html DisplayFor(modelItem =>item.FirstName)
+                    </td>
+
+                     <td>
+                        @Html DisplayNameFor(modelItem =>item.LastName)
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger">Decline</a>
+                        <a asp-action="Authorization" asp-route-id="@item.Id" class="btn-danger">Authorization</a>
+
+                    </td>
+
+                     
+                </tr>
+
+            }
+
+    </tbody>
+
+</table>
+<script>
+    function ready() {
+    }
+    //random number between 1 and 100 for demo
+    var userId = Math.floor((Math.random() * 100) + 1); document.addEventListener("DOMContentLoaded", ready);
+</script>
+<script src="~/lib/microsoft-signalr/signalr.js"></script>
+<script src="~/js/notification.js"></script>
